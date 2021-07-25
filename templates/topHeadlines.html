@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block body %}
+    
+
+
+    <div class="container my-3">
+        {% if category == 'All' %}
+        <h2>Top News From India</h2>
+            
+        {% else %}
+            <h2>Top {{category}} News From India</h2>
+        {% endif %}
+        <hr>
+        <div class="accordion" id="newsAccordion">
+            {% for index in limit %}
+            <div class="accordion-item my-3" style="border-bottom:4px solid black;">
+            <h2 class="accordion-header" id="heading{{index}}">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{index}}" aria-expanded="true" aria-controls="collapse{{index}}">
+                {{data[index]['title']}}
+              </button>
+            </h2>
+            <div id="collapse{{index}}" class="accordion-collapse collapse" aria-labelledby="heading{{index}}" data-bs-parent="#newsAccordion">
+              <div class="accordion-body">
+                {{data[index]['description']}}  <a href="{{data[index]['url']}}" target="_blank">Read More...</a>
+                <div>Posted On {{data[index]['publishedAt']}}
+                </div>
+                <!-- <div>Time - ${element.publishedAt.slice(11)}
+                </div> -->
+              </div>
+            </div>
+          </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    
+    {% endblock %}
+    <!-- Optional JavaScript; choose one of the two! -->
+    
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
